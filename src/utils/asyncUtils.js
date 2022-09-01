@@ -1,4 +1,3 @@
-import { call, put } from 'redux-saga/effects';
 /**
  * @param type (액션타입)
  * @param promiseCreator (api 요청 메소드)
@@ -17,17 +16,17 @@ export const createPromiseThunk = (type, promiseCreator) => {
     };
 };
 
-export const createPromiseSaga = (type, promiseCreator) =>{
-    const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
-    return function* saga(action) {
-        try{
-            const payload = yield call(promiseCreator, action.payload, action.id);
-            yield put({type: SUCCESS, payload});
-        }catch (e){
-            yield put({type: ERROR, error: e, payload: e});
-        }
-    };
-};
+// export const createPromiseSaga = (type, promiseCreator) =>{
+//     const [SUCCESS, ERROR] = [`${type}_SUCCESS`, `${type}_ERROR`];
+//     return function* saga(action) {
+//         try{
+//             const payload = yield call(promiseCreator, action.payload, action.id);
+//             yield put({type: SUCCESS, payload});
+//         }catch (e){
+//             yield put({type: ERROR, error: e, payload: e});
+//         }
+//     };
+// };
 
 export const reducerUtils = {
     initial: (initialData = null) => ({
