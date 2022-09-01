@@ -6,7 +6,7 @@ import {useState} from "react";
 
 export default function MainPage(){
     const navigate = useNavigate();
-    const [value, setValue] = useState('');
+    const [value, setValue] = useState('home');
 
     const handleChange = (event, newValue) =>{
         setValue(newValue);
