@@ -33,13 +33,24 @@ Date.prototype.format = function (f) {
         }
     });
 };
+
 // eslint-disable-next-line no-extend-native
-Date.prototype.yearRange = function (rangeStart=1986){
-    let nowYear = this.getFullYear();
-    let yearArray = []
-    for (let i = nowYear; i >= rangeStart; i--) {
-        yearArray.push({text:i,value:i});
+Date.prototype.dateRange = function (range){
+    let dateRange = []
+    for (let i = 0; i<range; i++){
+        dateRange.push({
+            day: i+1,
+            date: new Date(this.setDate(this.getDate() + 1)).format('yyyy-MM-dd'),
+        })
     }
-    // console.log(yearArray);
-    return yearArray;
+    return dateRange;
 }
+
+Date.prototype.setDateExtension = function (sign, day){
+    if(sign){
+        return new Date(this.setDate(this.getDate()+day)).format('yyyy-MM-dd')
+    }else{
+        return new Date(this.setDate(this.getDate()-day)).format('yyyy-MM-dd')
+    }
+}
+

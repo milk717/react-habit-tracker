@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = '';
-const JSON_SERVER_URL = 'http://localhost:4000/habit';
+const JSON_SERVER_URL = 'http://localhost:4000';
 
 const instance =  axios.create({
     baseURL: BASE_URL,

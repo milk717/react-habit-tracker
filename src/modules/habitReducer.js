@@ -16,7 +16,7 @@ Object.freeze(ACTION);
 export const getHabitByID = createPromiseThunk(ACTION.GET_HABIT_BY_ID, habitApi.getHabit)
 
 const initialState = {
-    habits: reducerUtils.initial([]),
+    habits: reducerUtils.initial(),
     habit: reducerUtils.initial(),
 }
 
@@ -25,6 +25,9 @@ export default function habitReducer(state = initialState, action) {
         case ACTION.GET_HABIT_BY_ID:
         case ACTION.GET_HABIT_BY_ID_SUCCESS:
         case ACTION.GET_HABIT_BY_ID_ERROR:
-            return handleAsyncActions(action.type,'habit')(state, action);
+            return handleAsyncActions(ACTION.GET_HABIT_BY_ID,'habit')(state, action);
+
+        default:
+            return state;
     }
 }

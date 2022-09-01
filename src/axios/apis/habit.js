@@ -1,7 +1,7 @@
-import instance from "../index";
+import instance, {jsonServer} from "../index";
 
-export const getHabit = async(id) => {
-    const response = await instance.get(
+export const getHabit = async (id) => {
+    const response = await jsonServer.get(
         `/habit/${id}`
     );
     return response.data;
