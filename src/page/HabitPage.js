@@ -5,6 +5,7 @@ import {getHabitByID} from "../modules/habitReducer";
 import LinearProgressWithLabel from "../component/LinearProgressWithLabel";
 import HabitCheckBoard from "../component/HabitCheckBoard";
 import DateRange from "../component/DateRange";
+import {Background} from "../resource/style/background";
 
 export default function HabitPage() {
     const param = useParams();
@@ -26,7 +27,7 @@ export default function HabitPage() {
     if(!data) return;
 
     return (
-        <>
+        <Background>
             <h1>{data.title}</h1>
             <DateRange
                 startDate={data.startDate}
@@ -36,6 +37,6 @@ export default function HabitPage() {
             <HabitCheckBoard
                 progress = {data.progress}
             />
-        </>
+        </Background>
     );
 };
