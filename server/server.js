@@ -1,17 +1,23 @@
 const http = require('http');
 
-const server = http.createServer(function(request, response){
-    const fs = require('fs');
-    let jsonData;
-    fs.readFile('./json/habit.json','utf8', (err,jsonFile)=>{
-        if(err) throw err;
+// http.createServer(function (req, res){
+//     res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+//     res.write('<h1>hello</h1>');
+//     res.end('<h1>server end</h1>');
+// }).listen(8080,()=>{
+//     console.log('server start');
+// })
 
-        jsonData = JSON.parse(JSON.stringify(jsonFile));
-        response.writeHead(200, {'Content-Type': 'application/json'});
-        response.end(jsonData);
-    });
+const server = http.createServer(function (req, res){
+    res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+    res.write('<h1>hello</h1>');
+    res.end('<h1>server end</h1>');
 })
 
-server.listen(8080, function(){
-    console.log('Server is running on port 8080');
+server.listen(8080);
+server.on('listening',()=>{
+    console.log('server listening on port 8080');
 });
+server.on('error',(error)=>{
+    console.log(error);
+})
