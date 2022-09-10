@@ -1,31 +1,34 @@
-import {createPromiseThunk, handleAsyncActions, reducerUtils} from "../utils/asyncUtils";
-import * as habitApi from "../axios/apis/habit";
 
 const ACTION = {
-    GET_HABIT_LIST: 'GET_HABIT_LIST',
-    GET_HABIT_LIST_SUCCESS: 'GET_HABIT_LIST_SUCCESS',
-    GET_HABIT_LIST_ERROR: 'GET_HABIT_LIST_ERROR',
-
-    GET_HABIT_BY_ID: 'GET_HABIT_BY_ID',
-    GET_HABIT_BY_ID_SUCCESS: 'GET_HABIT_BY_ID_SUCCESS',
-    GET_HABIT_BY_ID_ERROR: 'GET_HABIT_BY_ID_ERROR',
+    CHECK_HABIT: 'CHECK_HABIT',
 }
-
 Object.freeze(ACTION);
 
-export const getHabitByID = createPromiseThunk(ACTION.GET_HABIT_BY_ID, habitApi.getHabit)
+export const checkHabit = (day) => ({type: ACTION.CHECK_HABIT, day: day})
 
 const initialState = {
-    habits: reducerUtils.initial(),
-    habit: reducerUtils.initial(),
+    habit: {
+        id: 0,
+        title: "",
+        startDate: new Date().format("yyyy-MM-dd"),
+        endDate: new Date().setDateExtension(true, 66),
+        progressPercent: 0,
+        progress: new Date().dateRange(66),
+    },
 }
 
 export default function habitReducer(state = initialState, action) {
     switch (action.type) {
-        case ACTION.GET_HABIT_BY_ID:
-        case ACTION.GET_HABIT_BY_ID_SUCCESS:
-        case ACTION.GET_HABIT_BY_ID_ERROR:
-            return handleAsyncActions(ACTION.GET_HABIT_BY_ID,'habit')(state, action);
+        case ACTION.CHECK_HABIT:{
+            const newProgress = state.habit.progress.map((item)=>(item.day === action.day ? {...item, isComplete: !item.isComplete} : item))
+            return {
+                ...state,
+                habit: {
+                    ...state.habit,
+                    progress: newProgress,
+                }
+            }
+        }
 
         default:
             return state;

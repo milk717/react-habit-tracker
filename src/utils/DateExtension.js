@@ -41,6 +41,7 @@ Date.prototype.dateRange = function (range){
         dateRange.push({
             day: i+1,
             date: new Date(this.setDate(this.getDate() + 1)).format('yyyy-MM-dd'),
+            isComplete: false
         })
     }
     return dateRange;
