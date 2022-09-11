@@ -1,5 +1,5 @@
 import {Button, HabitCheckBoardItem, HabitCheckBoardList} from "../resource/style/components";
-import confetti from "https://cdn.skypack.dev/canvas-confetti@1";
+// import confetti from "https://cdn.skypack.dev/canvas-confetti@1";
 import {useDispatch} from "react-redux";
 import {checkHabit} from "../modules/habitReducer";
 
@@ -13,10 +13,10 @@ export default function HabitCheckBoard(
     const dateArray = new Date(progress[0].date).dateRange(66);
 
     const handleDateClick = (e, item) =>{
-        confetti({
-            particleCount: 150,
-            spread: 100
-        });
+        // confetti({
+        //     particleCount: 150,
+        //     spread: 100
+        // });
         dispatch(checkHabit(item.day));
     }
 

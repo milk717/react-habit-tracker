@@ -1,7 +1,5 @@
 import {useParams} from "react-router-dom";
-import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getHabitByID} from "../modules/habitReducer";
 import LinearProgressWithLabel from "../component/LinearProgressWithLabel";
 import HabitCheckBoard from "../component/HabitCheckBoard";
 import DateRange from "../component/DateRange";
