@@ -6,7 +6,7 @@ import HabitListContainer from "./container/HabitListContainer";
 import HomeContainer from "./container/HomeContainer";
 import TogetherContainer from "./container/TogetherContainer";
 import HabitPage from "./page/HabitPage";
-import HabitEditPage from "./page/HabitEditPage";
+import EditHabitPage from "./page/EditHabitPage";
 
 function App() {
     return (
@@ -19,7 +19,7 @@ function App() {
                         <Route path="/together" element={<TogetherContainer/>}/>
                     </Route>
                     <Route path="/habit/:id" element={<HabitPage/>}/>
-                    <Route path="/habit/edit" element={<HabitEditPage/>}/>
+                    <Route path="/habit/edit" element={<EditHabitPage/>}/>
                     <Route path="/login" element={<LoginPage/>}/>
                 </Routes>
             </BrowserRouter>

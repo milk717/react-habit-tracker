@@ -9,7 +9,7 @@ export class HabitModel {
      */
     constructor({
                     id=0 ,
-                    title='',
+                    title='이름 없음',
                     startDate= new Date().format("yyyy-MM-dd"),
                     endDate=new Date().setDateExtension(true, 66),
                     progressPercent=0,
