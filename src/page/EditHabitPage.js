@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import {Button} from "@mui/material";
 
 
 export default function EditHabitPage(){
@@ -15,35 +16,34 @@ export default function EditHabitPage(){
     const [value, setValue] = useState(null);
     
     const handleHabitTitleChange = (e) =>{
-        if(idValidation.test(e.target.value)){
-            setTitleValidation(true);
-        }else{
-            setTitleValidation(false);
-        }
+        if(!e.target.value) setTitleValidation(false);
+        else setTitleValidation(true);
     }
 
-    const handleStartDateChange = (e) =>{
-        dispatch(changeHabit('startDate', e));
+    const handleStartDateChange = (newValue) =>{
+        setValue(newValue)
     }
+
+    const handleSubmit = () =>{}
 
     return(
         <>
             <h1>새로운 습관 추가</h1>
-            <TextField id="outlined-basic" variant="outlined" placeholder="ID"
-                       helperText={!titleValidation &&'4~10자리의 영문/숫자를 입력하세요'}
+            <TextField id="outlined-basic" variant="outlined" placeholder="Title"
                        error ={!titleValidation}
+                       helperText={'제목은 공백일 수 없습니다.'}
                        onChange={handleHabitTitleChange}/>
             <br/><br/>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DatePicker
-                    label="Basic example"
+                    label="Start Date"
                     value={value}
-                    onChange={(newValue) => {
-                        setValue(newValue);
-                    }}
+                    onChange={(newValue)=>handleStartDateChange(newValue)}
                     renderInput={(params) => <TextField {...params} />}
                 />
             </LocalizationProvider>
+            <br/>
+            <Button onClick={handleSubmit}>저장하기</Button>
         </>
     )
 }
